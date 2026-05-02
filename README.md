@@ -27,9 +27,9 @@ A lightweight, Java 8 compatible AI agent framework with a pluggable model inter
 
 ```xml
 <dependency>
-    <groupId>com.agentic4j</groupId>
+    <groupId>io.github.azazali30</groupId>
     <artifactId>agentic4j-openai</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>0.1.0</version>
 </dependency>
 ```
 
@@ -103,9 +103,9 @@ Add the starter dependency:
 
 ```xml
 <dependency>
-    <groupId>com.agentic4j</groupId>
+    <groupId>io.github.azazali30</groupId>
     <artifactId>agentic4j-spring-boot-starter</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>0.1.0</version>
 </dependency>
 ```
 
