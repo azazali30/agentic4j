@@ -74,7 +74,14 @@ public class DefaultStreamingResponse implements StreamingResponse {
     @Override
     public void start() {
         memory.add(ChatMessage.user(userMessage));
-        sendRequest(0);
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                sendRequest(0);
+            }
+        }, "agentic4j-streaming");
+        thread.setDaemon(true);
+        thread.start();
     }
 
     private void sendRequest(int iteration) {
