@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.agentic4j.spring.Agentic4jAutoConfiguration
