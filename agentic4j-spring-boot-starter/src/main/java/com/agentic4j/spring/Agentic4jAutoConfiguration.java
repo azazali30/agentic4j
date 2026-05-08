@@ -31,6 +31,9 @@ public class Agentic4jAutoConfiguration {
         if (openai.getMaxTokens() != null) {
             builder.maxTokens(openai.getMaxTokens());
         }
+        if (openai.getMaxCompletionTokens() != null) {
+            builder.maxCompletionTokens(openai.getMaxCompletionTokens());
+        }
         return builder.build();
     }
 
@@ -49,6 +52,9 @@ public class Agentic4jAutoConfiguration {
                 .logResponses(openai.isLogResponses());
         if (openai.getMaxTokens() != null) {
             builder.maxTokens(openai.getMaxTokens());
+        }
+        if (openai.getMaxCompletionTokens() != null) {
+            builder.maxCompletionTokens(openai.getMaxCompletionTokens());
         }
         return builder.build();
     }

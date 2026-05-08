@@ -26,6 +26,7 @@ public class OpenAiChatModel implements ChatModel {
     private final String modelName;
     private final double temperature;
     private final Integer maxTokens;
+    private final Integer maxCompletionTokens;
     private final OkHttpClient httpClient;
     private final boolean logRequests;
     private final boolean logResponses;
@@ -36,6 +37,7 @@ public class OpenAiChatModel implements ChatModel {
         this.modelName = builder.modelName;
         this.temperature = builder.temperature;
         this.maxTokens = builder.maxTokens;
+        this.maxCompletionTokens = builder.maxCompletionTokens;
         this.logRequests = builder.logRequests;
         this.logResponses = builder.logResponses;
         this.httpClient = new OkHttpClient.Builder()
@@ -51,7 +53,7 @@ public class OpenAiChatModel implements ChatModel {
 
     @Override
     public ChatResponse send(ChatRequest request) {
-        String jsonBody = OpenAiRequestMapper.toJson(request, modelName, temperature, maxTokens, false);
+        String jsonBody = OpenAiRequestMapper.toJson(request, modelName, temperature, maxTokens, maxCompletionTokens, false);
 
         if (logRequests) {
             LOG.info("OpenAI request: " + jsonBody);
@@ -103,6 +105,7 @@ public class OpenAiChatModel implements ChatModel {
         private String modelName = "gpt-4o-mini";
         private double temperature = 0.7;
         private Integer maxTokens;
+        private Integer maxCompletionTokens;
         private long timeout = 60;
         private boolean logRequests;
         private boolean logResponses;
@@ -137,6 +140,11 @@ public class OpenAiChatModel implements ChatModel {
 
         public Builder maxTokens(Integer maxTokens) {
             this.maxTokens = maxTokens;
+            return this;
+        }
+
+        public Builder maxCompletionTokens(Integer maxCompletionTokens) {
+            this.maxCompletionTokens = maxCompletionTokens;
             return this;
         }
 

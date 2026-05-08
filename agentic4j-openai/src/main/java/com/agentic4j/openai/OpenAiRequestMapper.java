@@ -26,11 +26,18 @@ public class OpenAiRequestMapper {
 
     public static String toJson(ChatRequest request, String model, double temperature,
                                 Integer maxTokens, boolean stream) {
+        return toJson(request, model, temperature, maxTokens, null, stream);
+    }
+
+    public static String toJson(ChatRequest request, String model, double temperature,
+                                Integer maxTokens, Integer maxCompletionTokens, boolean stream) {
         ObjectNode root = OBJECT_MAPPER.createObjectNode();
         root.put("model", model);
         root.put("temperature", temperature);
 
-        if (maxTokens != null) {
+        if (maxCompletionTokens != null) {
+            root.put("max_completion_tokens", maxCompletionTokens.intValue());
+        } else if (maxTokens != null) {
             root.put("max_tokens", maxTokens.intValue());
         }
 
