@@ -15,6 +15,7 @@ public class Agentic4jProperties {
         private String modelName = "gpt-4o-mini";
         private double temperature = 0.7;
         private Integer maxTokens;
+        private Integer maxCompletionTokens;
         private long timeout = 60;
         private boolean logRequests = false;
         private boolean logResponses = false;
@@ -29,6 +30,8 @@ public class Agentic4jProperties {
         public void setTemperature(double temperature) { this.temperature = temperature; }
         public Integer getMaxTokens() { return maxTokens; }
         public void setMaxTokens(Integer maxTokens) { this.maxTokens = maxTokens; }
+        public Integer getMaxCompletionTokens() { return maxCompletionTokens; }
+        public void setMaxCompletionTokens(Integer maxCompletionTokens) { this.maxCompletionTokens = maxCompletionTokens; }
         public long getTimeout() { return timeout; }
         public void setTimeout(long timeout) { this.timeout = timeout; }
         public boolean isLogRequests() { return logRequests; }

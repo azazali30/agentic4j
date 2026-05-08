@@ -39,6 +39,7 @@ public class OpenAiStreamingChatModel implements StreamingChatModel {
     private final String modelName;
     private final double temperature;
     private final Integer maxTokens;
+    private final Integer maxCompletionTokens;
     private final OkHttpClient httpClient;
     private final boolean logRequests;
     private final boolean logResponses;
@@ -49,6 +50,7 @@ public class OpenAiStreamingChatModel implements StreamingChatModel {
         this.modelName = builder.modelName;
         this.temperature = builder.temperature;
         this.maxTokens = builder.maxTokens;
+        this.maxCompletionTokens = builder.maxCompletionTokens;
         this.logRequests = builder.logRequests;
         this.logResponses = builder.logResponses;
         this.httpClient = new OkHttpClient.Builder()
@@ -64,7 +66,7 @@ public class OpenAiStreamingChatModel implements StreamingChatModel {
 
     @Override
     public void send(ChatRequest request, StreamingResponseHandler handler) {
-        String jsonBody = OpenAiRequestMapper.toJson(request, modelName, temperature, maxTokens, true);
+        String jsonBody = OpenAiRequestMapper.toJson(request, modelName, temperature, maxTokens, maxCompletionTokens, true);
 
         if (logRequests) {
             LOG.info("OpenAI streaming request: " + jsonBody);
@@ -215,6 +217,7 @@ public class OpenAiStreamingChatModel implements StreamingChatModel {
         private String modelName = "gpt-4o-mini";
         private double temperature = 0.7;
         private Integer maxTokens;
+        private Integer maxCompletionTokens;
         private long timeout = 60;
         private boolean logRequests;
         private boolean logResponses;
@@ -248,6 +251,11 @@ public class OpenAiStreamingChatModel implements StreamingChatModel {
 
         public Builder maxTokens(Integer maxTokens) {
             this.maxTokens = maxTokens;
+            return this;
+        }
+
+        public Builder maxCompletionTokens(Integer maxCompletionTokens) {
+            this.maxCompletionTokens = maxCompletionTokens;
             return this;
         }
 
